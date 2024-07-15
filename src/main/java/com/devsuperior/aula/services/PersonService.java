@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.aula.dto.PersonDepartmentDTO;
 import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
+import com.devsuperior.aula.repositories.DepartmentRepository;
 import com.devsuperior.aula.repositories.PersonRepository;
 
 
@@ -15,6 +16,9 @@ public class PersonService {
 	
 	@Autowired
 	private PersonRepository repository;
+
+	@Autowired
+	private DepartmentRepository departmentRepository;
 	
 		
 	@Transactional
@@ -31,8 +35,12 @@ public class PersonService {
 		entity.setName(dto.getName());
 		entity.setSalary(dto.getSalary());
 		
-		Department dept = new Department();	
-		dept.setId(dto.getDepartment().getId());
+		//Department dept = new Department();	
+		//dept.setId(dto.getDepartment().getId());
+		
+		Department dept = departmentRepository.getReferenceById(dto.getDepartment().getId());
+		
+		
 		
 		entity.setDepartment(dept);
 	}

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.devsuperior.aula.dto.PersonDTO;
 import com.devsuperior.aula.dto.PersonDepartmentDTO;
 import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
@@ -21,6 +22,24 @@ public class PersonService {
 	private DepartmentRepository departmentRepository;
 	
 		
+	@Transactional
+	public PersonDTO insert(PersonDTO dto) {
+		Person entity = new Person(); 
+		
+		entity.setName(dto.getName());
+		entity.setSalary(dto.getSalary());
+		
+		Department dept = new Department();
+		dept.setId(dto.getDepartmentId());
+		
+		entity.setDepartment(dept);
+		
+		
+		entity = repository.save(entity);
+		
+		return new PersonDTO(entity);
+	}
+	
 	@Transactional
 	public PersonDepartmentDTO insert(PersonDepartmentDTO dto) {
 		Person entity = new Person(); 

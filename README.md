@@ -17,8 +17,3 @@ Projeto desenvolvido no curso Java Spring Professional - Devsuperior
 - Maven 
 - Spring Framework
 
-# Autor
-
-Arnaldo Manuel de Almeida Canelas
-
-https://www.linkedin.com/in/arnaldocanelas
